@@ -28,7 +28,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fe^vcm+axh(tc)zo=^dbz7kxm!vr^0
 # DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'radiant-shelf-01924.herokuapp.com',
+]
 
 
 # Application definition
