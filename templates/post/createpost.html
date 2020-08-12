@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Добавить статью{% endblock %}
+{% block content %}
+    <div class="add_post">
+        <h1 class="title_h1">Добавить статью</h1>
+        {% if created %}
+            <h2 class="title_h2">Статья была успешно создана</h2>
+        {% else %}
+        <form action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="fields_title_load">
+                {{ post_form.title }}
+                <div class="button_load">
+                    <input type="submit" value="Опубликовать">
+                </div>
+            </div>
+            <div class="field_body_image">
+                {{ post_form.body }}
+                <div class="load_image">
+                    <h3 class="title_h3">Загрузить изображение</h3>
+                    {{ post_form.image }}
+                    <br>
+                        <img id="image" src="#" alt=""/>
+                </div>
+            </div>
+        </form>
+        {{ post_form.media }}
+        {% endif %}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#image').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#id_image").change(function(){
+            readURL(this);
+        });
+    </script>
+{% endblock content %}

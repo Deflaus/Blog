@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Блог Kodland{% endblock %}
+{% block content %}
+    <div class="new_post">
+        <div class="title_body">
+            <h4>NEW</h4>
+            <h1 class="title_h1">{{ posts.0.title }}</h1>
+            <p>
+                {{ posts.0.body|safe|truncatewords:30}}
+            </p>
+            <div class="button">
+                <a href="{% url 'post_detail' posts.0.pk %}">
+                    Читать
+                </a>
+            </div>
+        </div>
+        <img src="{{ posts.0.image.url }}">
+    </div>
+    <div class="divposts">
+        <h2 class="title_another_post">Другие статьи</h2>
+        <div class="posts">
+            {% for post in posts %}
+                {% if post is not posts.0 %}
+                    <a href="{% url 'post_detail' post.pk %}">
+                        <div class="post">
+                            <p class="datetime">{{ post.datetime }}</p>
+                            <img src="{{ post.image.url }}">
+                            <h3 class="title_h3">
+                                {{ post.title }}
+                            </h3>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>            
+    </div>
+{% endblock content %}
