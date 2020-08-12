@@ -154,7 +154,7 @@ a {
 }
 
 .posts img {
-    width: 150px;
+    max-width: 150px;
     max-height: 150px;
     align-self: center;
     border-radius: 6px;
